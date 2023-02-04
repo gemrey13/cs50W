@@ -1,0 +1,33 @@
+nav {
+    text-align: right;
+}
+
+nav a {
+    text-decoration: none;
+    margin: 20px;
+}
+
+form {
+    text-align: center;
+    margin: 100px;
+}
+
+input[type=text] {
+    border-radius: 20px;
+    margin: 20px;
+    font-size: larger;
+}
+
+input[type=submit] {
+    font-size: large;
+    
+}
+
+.a-form {
+    text-align: left;
+}
+
+.a-button {
+    background-color: blue;
+    color: white;
+}
