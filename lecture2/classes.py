@@ -11,6 +11,7 @@ p = Point(2, 8)
 #print(p.y)
 
 class Flight():
+    # This __init__ function will all automatically
     def __init__(self, capacity):
         self.capacity = capacity
         self.passengers = []
