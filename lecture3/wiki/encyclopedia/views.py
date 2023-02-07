@@ -4,11 +4,15 @@ import markdown2
 from . import util
 
 
+
+
 def index(request):
 
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
+
+
 
 
 """
@@ -25,18 +29,16 @@ def search(request):
             return render(request, "encyclopedia/entry.html", {
                 "content": html
             })
-
     except TypeError:
         query = request.GET.get('q')
-        result = []
-        lists = util.list_entries()
-        for list in lists:
-            if query in list:
-                result.append(list)
-        
-        return render(request, "encyclopedia/index.html", {
-           "entries": result
+        entries = util.list_entries()
+        entries = [entry for entry in entries if query.lower() in entry.lower()]
+        return render(request, "encyclopedia/searched.html", {
+            "entries": entries
         })
+
+
+
 
 def entry(request, title):
     text = util.get_entry(title)
