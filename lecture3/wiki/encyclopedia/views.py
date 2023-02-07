@@ -17,3 +17,14 @@ def entry(request, title):
     return render(request, "encyclopedia/entry.html", {
         "content": html
     })
+
+
+def search(request):
+    query = request.GET.get('q')
+    
+    result = util.get_entry(query)
+    html = markdown2.markdown(result)
+
+    return render(request, "encyclopedia/entry.html", {
+        "content": html
+    })
