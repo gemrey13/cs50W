@@ -1,9 +1,5 @@
 {% extends "encyclopedia/layout.html" %}
 
-{% block title %}
-    Encyclopedia
-{% endblock %}
-
 
 {% block body %}
     <h1>Search Pages</h1>
@@ -12,6 +8,9 @@
     {% if entries %}
         <ul>
             {% for entry in entries %}
+                <!-- entry because it is the function name in path, "title" will need to find
+                specific entry, the "entry" is made by entries 
+                -->
                 <li><a href="{% url 'entry' title=entry%}">{{ entry }}</a></li>
             {% endfor %}
         </ul>        

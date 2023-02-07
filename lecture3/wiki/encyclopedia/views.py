@@ -5,7 +5,7 @@ from . import util
 
 
 
-
+# Will display all the list of entries in wiki
 def index(request):
 
     return render(request, "encyclopedia/index.html", {
@@ -29,17 +29,22 @@ def search(request):
             return render(request, "encyclopedia/entry.html", {
                 "content": html
             })
+
+# if the search is not accurate it will get the substring of the name="q" and render it in "encyclopedia/searched.html"
     except TypeError:
         query = request.GET.get('q')
         entries = util.list_entries()
         entries = [entry for entry in entries if query.lower() in entry.lower()]
+
         return render(request, "encyclopedia/searched.html", {
             "entries": entries
         })
 
 
-
-
+"""
+The title will be provided in urls.py in path("wiki/<str:title>")
+markdown2.markdown() will convert the markdown or md to html file
+"""
 def entry(request, title):
     text = util.get_entry(title)
     html = markdown2.markdown(text)
