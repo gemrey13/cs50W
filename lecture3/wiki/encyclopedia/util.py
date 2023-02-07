@@ -26,12 +26,21 @@ def save_entry(title, content):
 
 
 def get_entry(title):
+
+    title_lower = title.lower()
+    title_capitalized = title.capitalize()
+    title_upper = title.upper()
+    
+    filenames = [f"entries/{title_lower}.md", f"entries/{title_capitalized}.md", f"entries/{title_upper}.md"]
     """
     Retrieves an encyclopedia entry by its title. If no such
     entry exists, the function returns None.
     """
-    try:
-        f = default_storage.open(f"entries/{title}.md")
-        return f.read().decode("utf-8")
-    except FileNotFoundError:
-        return None
+    for filename in filenames:
+        try:
+            f = default_storage.open(filename)
+            return f.read().decode("utf-8")
+        except FileNotFoundError:
+            pass
+    
+    return None
