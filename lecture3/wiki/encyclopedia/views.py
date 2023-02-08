@@ -48,7 +48,8 @@ def entry(request, title):
     html = markdown2.markdown(text)
 
     return render(request, "encyclopedia/entry.html", {
-        "content": html
+        "content": html,
+        "title": title
     })
 
 
@@ -71,5 +72,16 @@ def newpage(request):
 
 
 
-def editEntry(request):
-    return render(request, "", {})
+def editEntry(request, id_title):
+
+    html_content = markdown2.markdown(util.get_edited_entry(id_title))
+    if request.method == "POST":
+        edited_entry = request.POST.get('edit_content')
+
+        util.save_edited_entry(id_title, edited_entry)
+        return redirect('entry', id_title)
+
+    return render(request, "encyclopedia/edit.html", {
+       "content": html_content,
+    })
+

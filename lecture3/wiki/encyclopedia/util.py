@@ -1,5 +1,6 @@
 import re
-
+import markdown2
+from django.shortcuts import render
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
@@ -64,3 +65,34 @@ def get_entry(title):
             pass
     
     return None
+
+
+
+def save_edited_entry(title,md_content):
+    html_content = markdown2.markdown(md_content)
+    fileTitle = f'entries/{title}.md'
+    default_storage.save(fileTitle, html_content.encode("utf-8"))
+
+
+def get_edited_entry(title):
+
+    title_lower = title.lower()
+    title_capitalized = title.capitalize()
+    title_upper = title.upper()
+    
+    filenames = [f"entries/{title_lower}.md", f"entries/{title_capitalized}.md", f"entries/{title_upper}.md"]
+    """
+    Retrieves an encyclopedia entry by its title. If no such
+    entry exists, the function returns None.
+    """
+    for filename in filenames:
+        try:
+            f = default_storage.open(filename)
+            md_content = f.read().decode("utf-8")
+            return md_content
+            
+        except FileNotFoundError:
+            pass
+    
+    return None
+
