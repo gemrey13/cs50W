@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "encyclopedia"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
