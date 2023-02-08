@@ -9,8 +9,10 @@ from . import views
 """
 urlpatterns = [
     path("", views.index, name="index"),
-    path("wiki/", views.search, name="search"),
+    path("search/", views.search, name="search"),
     path("wiki/<str:title>", views.entry, name="entry"),
+    path("newpage/", views.newpage, name="newpage"),
+    path("error/", views.newpage, name="error"),
 ]
 
 

@@ -14,15 +14,26 @@ def list_entries():
 
 
 def save_entry(title, content):
+
+    title_lower = title.lower()
+    title_capitalized = title.capitalize()
+    title_upper = title.upper()
+    
+    filenames = [f"entries/{title_lower}.md", f"entries/{title_capitalized}.md", f"entries/{title_upper}.md"]
+ 
     """
     Saves an encyclopedia entry, given its title and Markdown
     content. If an existing entry with the same title already exists,
     it is replaced.
     """
-    filename = f"entries/{title}.md"
-    if default_storage.exists(filename):
-        default_storage.delete(filename)
-    default_storage.save(filename, ContentFile(content))
+    for filename in filenames:
+        if default_storage.exists(filename):
+            raise ValueError("The Entry Title Already exists!")
+            #default_storage.delete(filename)
+            break
+    else:
+        content = f'# {title} \n\n {content}'
+        default_storage.save(filename, ContentFile(content.encode("utf-8")))
 
 
 def get_entry(title):

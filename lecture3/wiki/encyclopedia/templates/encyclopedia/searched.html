@@ -2,10 +2,11 @@
 
 
 {% block body %}
-    <h1>Search Pages</h1>
+    
 
 
     {% if entries %}
+        <h1 class="alert alert-info">Similar Pages</h1>
         <ul>
             {% for entry in entries %}
                 <!-- entry because it is the function name in path, "title" will need to find
@@ -15,7 +16,8 @@
             {% endfor %}
         </ul>        
     {% else %}
-        <h3>No Wiki</h3>
+
+        <h1 class="alert alert-warning">Search not found</h1>
 
     {% endif %}
 

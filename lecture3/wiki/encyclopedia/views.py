@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import markdown2
 from . import util
@@ -53,3 +53,16 @@ def entry(request, title):
         "content": html
     })
 
+
+
+
+def newpage(request):
+    try:
+        if request.method == "POST":
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+            util.save_entry(title, content)
+            return redirect('entry', title)
+    except ValueError:
+        return render(request, "encyclopedia/valueError.html", {})
+    return render(request, 'encyclopedia/newpage.html', {})
