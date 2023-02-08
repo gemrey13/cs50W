@@ -57,12 +57,15 @@ def entry(request, title):
 
 
 def newpage(request):
+
     try:
         if request.method == "POST":
             title = request.POST.get('title')
             content = request.POST.get('content')
             util.save_entry(title, content)
             return redirect('entry', title)
+
     except ValueError:
         return render(request, "encyclopedia/valueError.html", {})
+
     return render(request, 'encyclopedia/newpage.html', {})

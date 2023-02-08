@@ -26,14 +26,23 @@ def save_entry(title, content):
     content. If an existing entry with the same title already exists,
     it is replaced.
     """
+    
     for filename in filenames:
         if default_storage.exists(filename):
             raise ValueError("The Entry Title Already exists!")
             #default_storage.delete(filename)
             break
     else:
+        if title == title.lower():
+            title = title.capitalize()
+        elif title == title.upper():
+            title = title.upper()
+        else:
+            title = title.capitalize()
+            
+        fileTitle = f'entries/{title}.md'
         content = f'# {title} \n\n {content}'
-        default_storage.save(filename, ContentFile(content.encode("utf-8")))
+        default_storage.save(fileTitle, ContentFile(content.encode("utf-8")))
 
 
 def get_entry(title):
