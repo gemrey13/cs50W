@@ -13,8 +13,6 @@ def index(request):
     })
 
 
-
-
 """
  This function will get the form with name of q and get the entry(util.get_entry()) based on the q
  This function will render in encyclopedia/entry.html template
@@ -69,3 +67,9 @@ def newpage(request):
         return render(request, "encyclopedia/valueError.html", {})
 
     return render(request, 'encyclopedia/newpage.html', {})
+
+
+
+
+def editEntry(request):
+    return render(request, "", {})
