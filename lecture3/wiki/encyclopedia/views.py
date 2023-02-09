@@ -25,7 +25,8 @@ def search(request):
             html = markdown2.markdown(result)
 
             return render(request, "encyclopedia/entry.html", {
-                "content": html
+                "content": html,
+                "title": query
             })
 
 # if the search is not accurate it will get the substring of the name="q" and render it in "encyclopedia/searched.html"

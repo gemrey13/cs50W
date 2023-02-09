@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<h1>new page</h1>
+<h1 class="alert alert-info">Add wiki</h1>
 
     <form action="{% url 'newpage'%}" method="post">
     {% csrf_token %}
