@@ -35,14 +35,16 @@ def save_entry(title, content):
             break
     else:
         if title == title.lower():
-            title = title.capitalize()
+            fileTitle = f'entries/{title.capitalize()}.md'
+            content = f'# {title.capitalize()} \n\n {content}'
         elif title == title.upper():
-            title = title.upper()
+            fileTitle = f'entries/{title.upper()}.md'
+            content = f'# {title.upper()} \n\n {content}'
         else:
-            title = title.capitalize()
+            fileTitle = f'entries/{title.capitalize()}.md'
+            content = f'# {title.capitalize()} \n\n {content}'
             
-        fileTitle = f'entries/{title}.md'
-        content = f'# {title} \n\n {content}'
+        
         default_storage.save(fileTitle, ContentFile(content.encode("utf-8")))
 
 
