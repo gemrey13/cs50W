@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import markdown2
 from . import util
-
+import random
 
 
 # Will display all the list of entries in wiki
@@ -82,3 +82,18 @@ def editEntry(request,title):
     return render(request, 'encyclopedia/edit.html', {
         "content": content
     })
+
+
+def randomEntry(request):
+    
+    entries = util.list_entries()
+    random_int = random.randint(0, len(entries)-1)
+
+    entry = entries[random_int]
+    text = util.get_entry(entry)
+    html = markdown2.markdown(text)
+    return render(request, 'encyclopedia/entry.html', {
+        "content": html,
+        "title": entry
+    })
+    
