@@ -82,7 +82,7 @@ def save_edit_entry(title, content):
     title = f'entries/{title}.md'
     edit_content = f'{content}'
 
-    default_storage.save(title, ContentFile(markdown2.markdown(edit_content)))
+    default_storage.save(title, ContentFile(edit_content.encode('utf-8')))
 
 def get_edit_entry(title):
     title_lower = title.lower()

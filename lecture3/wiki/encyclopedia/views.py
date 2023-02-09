@@ -79,7 +79,6 @@ def editEntry(request,title):
        return redirect("entry", title)
     
     content = util.get_edit_entry(title)
-    md_content = markdown2.markdown(content)
     return render(request, 'encyclopedia/edit.html', {
-        "content": md_content
+        "content": content
     })
