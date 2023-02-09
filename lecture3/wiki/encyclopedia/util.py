@@ -83,3 +83,20 @@ def save_edit_entry(title, content):
     edit_content = f'{content}'
 
     default_storage.save(title, ContentFile(markdown2.markdown(edit_content)))
+
+def get_edit_entry(title):
+    title_lower = title.lower()
+    title_capitalized = title.capitalize()
+    title_upper = title.upper()
+    
+    filenames = [f"entries/{title_lower}.md", f"entries/{title_capitalized}.md", f"entries/{title_upper}.md"]
+    
+    for filename in filenames:
+        try:
+            f = default_storage.open(filename)
+            content = f.read().decode('utf-8')
+            return content
+        except FileNotFoundError:
+            pass
+    
+    return None
