@@ -3,15 +3,16 @@
 {% block body %}
 	<h1>Create</h1>
 
-	<form  action="{% url 'index' %}" method="post">
+	<form method="POST">
 		{% csrf_token %}
 		<input type="text" name="title" placeholder="Title"><br>
-		<textarea name="description" column="50" rows="5">Description</textarea><br>
-		<input type="number" name="starting_bid" placeholder="starting bid">
+		<textarea name="description" column="50" rows="5" placeholder="Description"></textarea><br>
+		<input type="number" name="price" placeholder="Price"><br>
+		<input type="number" name="starting_bid" placeholder="Starting bid">
 		
-		<select name="category">
+		<select name="select_category">
 			{% for category in categories %}
-				<option>{{category}}</option>
+				<option value="{{category.name}}">{{category}}</option>
 			{% endfor %}
 			
 		</select>

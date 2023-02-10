@@ -8,7 +8,10 @@ from .models import *
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    listing = AuctionListing.objects.all()
+    return render(request, "auctions/index.html", {
+        "auction_listing": listing
+        })
 
 
 
@@ -81,13 +84,17 @@ def watchlist(request):
 
 def create(request):
     if request.method == "POST":
-        title = request.POST['title']
-        description = request.POST['description']
-        starting_bid = request.POST['starting_bid']
-        category = request.POST['category']
-        image_url = request.POST['image_url']
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        starting_bid = request.POST.get('starting_bid')
+        select_category = Category.objects.get(name=request.POST.get('select_category'))
+        image_url = request.POST.get('image_url')
 
-
+        print(f"title: {title}, description: {description}, price: {price}, starting_bid: {starting_bid}, category: {select_category}, image_url: {image_url}")
+        q = AuctionListing(user=request.user, title=title, description=description, price=price, starting_bid=starting_bid, category=select_category)
+        q.save()
+        return HttpResponseRedirect(reverse('index'))
     return render(request, "auctions/create.html", {
         "categories": Category.objects.all()
         })
