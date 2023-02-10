@@ -89,12 +89,15 @@ def create(request):
         price = request.POST.get('price')
         starting_bid = request.POST.get('starting_bid')
         select_category = Category.objects.get(name=request.POST.get('select_category'))
-        image_url = request.POST.get('image_url')
+        image_url = request.FILES.get('image_url')
 
         print(f"title: {title}, description: {description}, price: {price}, starting_bid: {starting_bid}, category: {select_category}, image_url: {image_url}")
-        q = AuctionListing(user=request.user, title=title, description=description, price=price, starting_bid=starting_bid, category=select_category)
+        q = AuctionListing(user=request.user, title=title, description=description, price=price, starting_bid=starting_bid, category=select_category, image_url=image_url)
         q.save()
+
         return HttpResponseRedirect(reverse('index'))
+
+        
     return render(request, "auctions/create.html", {
         "categories": Category.objects.all()
         })

@@ -4,11 +4,13 @@
     <h2>Active Listings</h2>
 
     {% for listing in auction_listing %}
-        <h2>Listing: {{listing.title}}</h2>
-        <img src="{{listing.image_url}}" width="350px">
+        <h3>Listing: {{listing.title}}</h3>
+        <img src="media/{{listing.image_url}}" width="350px">
+        
+        <p>{{listing.description}}</p>
+        <h3>${{listing.price}}</h3>
         <h3>{{listing.user.username}}</h3>
-        <div>{{listing.description}}</div>
-        <div>price: {{listing.price}}</div>
+        
         <div>Starting Bid: {{listing.starting_bid}}</div>
     {% endfor %}
 {% endblock %}
