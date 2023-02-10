@@ -22,6 +22,15 @@
             </li>
             {% if user.is_authenticated %}
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'watchlist' %}">WatchList</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'create' %}">Create Listing</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
             {% else %}
