@@ -97,7 +97,15 @@ def create(request):
 
         return HttpResponseRedirect(reverse('index'))
 
-        
+
     return render(request, "auctions/create.html", {
         "categories": Category.objects.all()
+        })
+
+
+def listing(request, listingNo):
+    get_listing_id = AuctionListing.objects.get(id=listingNo)
+
+    return render(request, "auctions/listing.html", {
+        "listing": get_listing_id
         })

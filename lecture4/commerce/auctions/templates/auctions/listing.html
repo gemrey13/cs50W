@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+	<h1>{{listing}}</h1>
+	<img src="{{listing.image_url.url}}" width="300px">
+
+	<h2>${{listing.price}}</h2>
+
+	<p>Description: {{listing.description}}</p>
+	{% if listing.user.username == listing.user.username %}
+		
+	{% else %}
+		<div>Starting Bid: {{listing.starting_bid}}</div>
+        <form method="post">
+            {% csrf_token %}
+            <input type="number" name="bid" placeholder="Bid"><br>
+            <input type="submit">
+        </form>
+	{% endif %}
+	
+{% endblock body %}
