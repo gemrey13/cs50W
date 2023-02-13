@@ -46,3 +46,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.user}: {self.text}'
+
+
+class Watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    auctionitem = models.ForeignKey(AuctionListing, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user} - {self.auctionitem} - {self.created_at}'

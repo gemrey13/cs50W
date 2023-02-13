@@ -4,21 +4,25 @@
     <h2>Active Listings</h2>
 
     {% for listing in auction_listing %}
-        <hr>
-        <h3><a href="{% url 'listing' listingNo=listing.id %}">Listing: {{listing.title}}</a></h3>
+    <div class="container-fluid">
+        <div class="card mx-auto">
+            <a href="{% url 'watchlist' item_id=listing.id%}">Add Listing</a>
+            <img src="{{listing.image_url.url}}" style="width:18rem;" class="card-img-top">
+            <div class="card-body">
+                <h3 class="card-title"><a href="{% url 'listing' listingNo=listing.id %}">Listing: {{listing.title}}</a></h3>
 
-        <img src="{{listing.image_url.url}}" width="350px">
+                <p>{{listing.description}}</p>
+                <h3>${{listing.price}}</h3>
 
-        <p>{{listing.description}}</p>
-        <h3>${{listing.price}}</h3>
+                <div>Starting Bid: {{listing.starting_bid}}</div>
 
-        <div>Starting Bid: {{listing.starting_bid}}</div>
-
-        <h4>Details</h4>
-        <ul>
-            <li>Listed by: {{listing.user.username}}</li>
-            <li>Category: {{listing.category}}</li>
-        </ul>
-
+                <h4>Details</h4>
+                <ul>
+                    <li>Listed by: {{listing.user.username}}</li>
+                    <li>Category: {{listing.category}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 {% endblock %}

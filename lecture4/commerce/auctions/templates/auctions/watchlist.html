@@ -1,0 +1,9 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+	<h2>Watchlist</h2>
+
+	{% for watchlist_item in watchlist_items %}
+		<p>{{watchlist_item.item.name}}</p>
+	{% endfor %}
+{% endblock body %}

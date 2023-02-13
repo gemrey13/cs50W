@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import *
@@ -78,8 +78,10 @@ def categories(request):
 
 
 
-def watchlist(request):
-    pass
+def watchlist(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    Watchlist.objects.get_or_create(user=request.user, item=item)
+    return redirect('watchlist')
 
 
 def create(request):
