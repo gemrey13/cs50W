@@ -105,7 +105,8 @@ def create(request):
 
 def listing(request, listingNo):
     get_listing_id = AuctionListing.objects.get(id=listingNo)
-
+    user = request.user
     return render(request, "auctions/listing.html", {
-        "listing": get_listing_id
+        "listing": get_listing_id,
+        "user": user
         })

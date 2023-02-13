@@ -7,8 +7,10 @@
 	<h2>${{listing.price}}</h2>
 
 	<p>Description: {{listing.description}}</p>
-	{% if listing.user.username == listing.user.username %}
-		
+	{{user.username}}
+
+	{% if user.username == listing.user.username %}
+		<h1>This is your auction item</h1>
 	{% else %}
 		<div>Starting Bid: {{listing.starting_bid}}</div>
         <form method="post">
@@ -17,5 +19,5 @@
             <input type="submit">
         </form>
 	{% endif %}
-	
+
 {% endblock body %}
