@@ -84,6 +84,7 @@ def watchlist(request, item_id):
     return redirect('watchlist')
 
 
+
 def create(request):
     if request.method == "POST":
         title = request.POST.get('title')
