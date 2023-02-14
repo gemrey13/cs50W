@@ -25,11 +25,13 @@
         </div>
     </div>
     <div>
-        {% if user.is_authenticated %}
-        Signed in as <strong>{{ user.username }}</strong>.
-        {% else %}
-        Not signed in.
-        {% endif %}
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {% if user.is_authenticated %}
+            Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+            Not signed in.
+            {% endif %}
+        
     </div>
     <hr>
     {% block body %}
