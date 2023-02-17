@@ -50,9 +50,8 @@ class Comment(models.Model):
 
 class Watchlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    auctionitem = models.ManyToManyField(AuctionListing, on_delete=models.CASCADE)
+    auctionitem = models.ManyToManyField(AuctionListing)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.user} - {self.auctionitem} :Watchlist'
-

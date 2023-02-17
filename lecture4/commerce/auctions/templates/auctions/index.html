@@ -8,8 +8,10 @@
         <img src="{{listing.image_url.url}}" style="width:18rem;" class="card-img-top">
         <div class="card-body">
             <h3 class="card-title"><a href="{% url 'listing' listingNo=listing.id %}">Listing: {{listing.title}}</a></h3>
-            <a href="{% url 'watchlist' item_id=listing.id%}">Add to Watchlist</a>
-            <p>{{listing.description}}</p>
+
+            <a href="{% url 'watchlist' product_id=listing.id %}" role="button">Add to Watchlist</a>
+
+                        <p>{{listing.description}}</p>
             <h3>${{listing.price}}</h3>
             <div>Starting Bid: {{listing.starting_bid}}</div>
             <h4>Details</h4>

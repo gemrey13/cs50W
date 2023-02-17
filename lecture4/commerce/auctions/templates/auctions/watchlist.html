@@ -3,7 +3,7 @@
 {% block body %}
 	<h2>Watchlist</h2>
 
-	{% for watchlist_item in watchlist_items %}
-		<p>{{watchlist_item.item.name}}</p>
+	{% for watchlist_item in watchlist %}
+		<p>{{watchlist_item.auctionitem.title}}</p>
 	{% endfor %}
 {% endblock body %}
