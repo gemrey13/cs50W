@@ -80,18 +80,20 @@ def categories(request):
 
 def watchlist(request, product_id):
     item_to_save = get_object_or_404(AuctionListing, pk=product_id)
+    print(f'item to save : {item_to_save}')
     if Watchlist.objects.filter(user=request.user, auctionitem=product_id).exists():
-        
         return HttpResponseRedirect(reverse("index"))
-    
-    user_list, created = Watchlist.objects.get_or_create(user=request.user)
-    
+
+    user_list, create = Watchlist.objects.get_or_create(user=request.user)
+    print(user_list)
     user_list.auctionitem.add(item_to_save)
-    
+
     return render(request, "auctions/watchlist.html")
 
 
 def watchlist_view(request):
+    test = Watchlist.objects.filter(user=request.user)
+    print(test)
     return render(request, 'auctions/watchlist.html', {
         "watchlist": Watchlist.objects.all().filter(user=request.user)
         })

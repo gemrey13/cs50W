@@ -3,7 +3,5 @@
 {% block body %}
 	<h2>Watchlist</h2>
 
-	{% for watchlist_item in watchlist %}
-		<p>{{watchlist_item.auctionitem.title}}</p>
-	{% endfor %}
+	<p>{{watchlist.auction_listing.user}}</p>
 {% endblock body %}
