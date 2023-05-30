@@ -12,7 +12,7 @@ As a student, I am learning the fundamentals of web development with an emphasis
 - Lecture 5: Javascript
 - Lecture 6: User Interface
 - Lecture 7: Testing and CI/CD
-- Lecture 8: Scalability and Secuirity
+- Lecture 8: Scalability and Security 
 
 
 Each project has its own folder containing the source code, templates, and relevant documentation. 
